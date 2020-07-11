@@ -1,0 +1,18 @@
+<div *ngIf="!preLoad && topBanner != null" class="ps-block--promotion-header bg--cover"  style="background: url({{path}}img/banner/top/{{topBanner['IMG tag']}});">
+    <div class="container">
+        <div class="ps-block__left">
+            <h3>{{topBanner['H3 tag']}}</h3>
+            <figure>
+                <p>{{topBanner['P1 tag']}}</p>
+                <h4>{{topBanner['H4 tag']}}</h4>
+            </figure>
+        </div>
+        <div class="ps-block__center">
+            <p>Enter Promotion<span>{{topBanner['Span tag']}}</span></p>
+        </div><a class="ps-btn ps-btn--sm" href="#">{{topBanner['Button tag']}}</a>
+    </div>
+</div>
+
+<div *ngIf="preLoad && topBanner == null" class="d-flex justify-content-center">
+    <div class="spinner-border text-muted my-3"></div>
+</div>
