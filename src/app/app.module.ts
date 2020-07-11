@@ -14,6 +14,8 @@ import { HeaderMobileComponent } from './modules/header-mobile/header-mobile.com
 import { HomeComponent } from './pages/home/home.component';
 import { ProductsComponent } from './pages/products/products.component';
 import { ProductComponent } from './pages/product/product.component';
+import { SearchComponent } from './pages/search/search.component';
+import { PagenofoundComponent } from './pages/pagenofound/pagenofound.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { ProductComponent } from './pages/product/product.component';
     HeaderMobileComponent,
     HomeComponent,
     ProductsComponent,
-    ProductComponent
+    ProductComponent,
+    SearchComponent,
+    PagenofoundComponent
   ],
   imports: [
     BrowserModule,
