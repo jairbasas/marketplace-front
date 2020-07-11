@@ -11,6 +11,9 @@ import { HeaderPromotionComponent } from './modules/header-promotion/header-prom
 import { NewLetterComponent } from './modules/new-letter/new-letter.component';
 import { FooterComponent } from './modules/footer/footer.component';
 import { HeaderMobileComponent } from './modules/header-mobile/header-mobile.component';
+import { HomeComponent } from './pages/home/home.component';
+import { ProductsComponent } from './pages/products/products.component';
+import { ProductComponent } from './pages/product/product.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,10 @@ import { HeaderMobileComponent } from './modules/header-mobile/header-mobile.com
     HeaderPromotionComponent,
     NewLetterComponent,
     FooterComponent,
-    HeaderMobileComponent
+    HeaderMobileComponent,
+    HomeComponent,
+    ProductsComponent,
+    ProductComponent
   ],
   imports: [
     BrowserModule,
