@@ -15,4 +15,7 @@ export class ProductsService {
     return this._http.get(`${this.api}products.json`);
   }
 
+  getLimitData(startAt:String ,limitToFirst: number){
+    return this._http.get(`${this.api}products.json?orderBy="$key"&startAt="${startAt}"&limitToFirst=${limitToFirst}&print=pretty`);
+  }
 }

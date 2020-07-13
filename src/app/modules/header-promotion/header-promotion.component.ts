@@ -25,7 +25,6 @@ export class HeaderPromotionComponent implements OnInit {
           let index = Math.floor(Math.random() * size);
           //console.log(response[Object.keys(response)[index]]);
           this.topBanner = JSON.parse(response[Object.keys(response)[index]].top_banner);
-          console.log(this.topBanner);
           this.preLoad = false;
         });
   }

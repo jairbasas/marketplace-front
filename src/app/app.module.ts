@@ -16,6 +16,10 @@ import { ProductsComponent } from './pages/products/products.component';
 import { ProductComponent } from './pages/product/product.component';
 import { SearchComponent } from './pages/search/search.component';
 import { PagenofoundComponent } from './pages/pagenofound/pagenofound.component';
+import { HomeBannerComponent } from './pages/home/home-banner/home-banner.component';
+import { HomeFeaturesComponent } from './pages/home/home-features/home-features.component';
+import { HomePromotionsComponent } from './pages/home/home-promotions/home-promotions.component';
+import { HomeHotTodayComponent } from './pages/home/home-hot-today/home-hot-today.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +33,11 @@ import { PagenofoundComponent } from './pages/pagenofound/pagenofound.component'
     ProductsComponent,
     ProductComponent,
     SearchComponent,
-    PagenofoundComponent
+    PagenofoundComponent,
+    HomeBannerComponent,
+    HomeFeaturesComponent,
+    HomePromotionsComponent,
+    HomeHotTodayComponent
   ],
   imports: [
     BrowserModule,
