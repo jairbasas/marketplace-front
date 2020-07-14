@@ -15,6 +15,11 @@ export class ProductsService {
     return this._http.get(`${this.api}products.json`);
   }
 
+  getFilterData(orderBy:String, equalTo:String){
+
+		return this._http.get(`${this.api}products.json?orderBy="${orderBy}"&equalTo="${equalTo}"&print=pretty`);
+
+	}
   getLimitData(startAt:String ,limitToFirst: number){
     return this._http.get(`${this.api}products.json?orderBy="$key"&startAt="${startAt}"&limitToFirst=${limitToFirst}&print=pretty`);
   }

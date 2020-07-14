@@ -20,6 +20,7 @@ import { HomeBannerComponent } from './pages/home/home-banner/home-banner.compon
 import { HomeFeaturesComponent } from './pages/home/home-features/home-features.component';
 import { HomePromotionsComponent } from './pages/home/home-promotions/home-promotions.component';
 import { HomeHotTodayComponent } from './pages/home/home-hot-today/home-hot-today.component';
+import { HomeCategoriesComponent } from './pages/home/home-categories/home-categories.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { HomeHotTodayComponent } from './pages/home/home-hot-today/home-hot-toda
     HomeBannerComponent,
     HomeFeaturesComponent,
     HomePromotionsComponent,
-    HomeHotTodayComponent
+    HomeHotTodayComponent,
+    HomeCategoriesComponent
   ],
   imports: [
     BrowserModule,

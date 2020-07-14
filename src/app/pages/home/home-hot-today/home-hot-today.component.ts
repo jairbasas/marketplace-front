@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Path } from "../../../config";
 import { ProductsService } from '../../../services/products.service';
-import { OwlCarouselConfig, CarouselNavigation, SlickConfig, ProductLightbox, CountDown, Rating } from "../../../function";
+import { OwlCarouselConfig, CarouselNavigation, SlickConfig, ProductLightbox, CountDown, Rating, ProgressBar } from "../../../function";
+import { SalesService } from '../../../services/sales.service';
 
 declare var jQuery: any;
 declare var $:any;
@@ -16,9 +17,12 @@ export class HomeHotTodayComponent implements OnInit {
   path: String = Path.url;
   indexes: Array<any> = [];
   render: Boolean= true;
+  renderBestSeller: Boolean = true;
   products: Array<any> = [];
   cargando:Boolean = false;
-  constructor(private productService: ProductsService) { }
+  topSales: Array<any> = [];
+  topSalesBlock: Array<any> = [];
+  constructor(private productService: ProductsService, private salesServices: SalesService) { }
 
   ngOnInit(): void {
     this.cargando = true;
@@ -52,6 +56,56 @@ export class HomeHotTodayComponent implements OnInit {
           }
 
         });
+
+        this.salesServices.getData()
+            .subscribe( response =>{
+              let i;
+              let getSales = [];
+              for(i in response){
+                getSales.push({
+                  "product": response[i].product,
+                  "quantity": response[i].quantity
+                });
+              }
+              
+              getSales.sort(function(a, b){
+                return (b.quantity - a.quantity);
+              });
+
+              let filterSales = [];
+              getSales.forEach(sale => {
+                if(!filterSales.find(response => response.product == sale.product)){
+                  const {product, quantity} = sale;
+                  filterSales.push({
+                    product,
+                    quantity
+                  });
+                }                
+              });
+
+              let block = 0;
+              filterSales.forEach((sale, index) => {
+                block++;
+                if(index < 20){
+                  this.productService.getFilterData("name", sale.product)
+                      .subscribe( response => {
+                        let i;
+                        for(i in response){
+                          this.topSales.push(response[i]); 
+                        }
+                                              
+                      });
+                }
+              });
+
+              for(let i = 0; i < Math.round(block/4); i++){
+
+                this.topSalesBlock.push(i);
+
+              }
+
+            });
+
   }
 
   callback(){
@@ -172,8 +226,73 @@ export class HomeHotTodayComponent implements OnInit {
       ProductLightbox.fnc();
       CountDown.fnc();
       Rating.fnc();
+      ProgressBar.fnc();
 		}
 
-	}
+  }
+  
+  callbackBestSeller(topSales){
+    if(this.renderBestSeller){
+      this.renderBestSeller = false;
+      let topSaleBlock = $(".topSaleBlock");
+      let top20Array = [];
+
+      setTimeout(() => {
+        $(".preload").remove();
+        
+        for(let i = 0; i < topSaleBlock.length; i++){
+          top20Array.push(
+            topSales.slice(i*topSaleBlock.length, (i*topSaleBlock.length) + topSaleBlock.length)
+          );
+
+            let f;
+            for(f in top20Array[i]){
+
+              let price;
+              let type;
+              let value;
+              let offer;
+
+              if(top20Array[i][f].offer != ""){
+                type = JSON.parse(top20Array[i][f].offer)[0];
+                value = JSON.parse(top20Array[i][f].offer)[1];
+
+                if(type == "Disccount"){
+                  offer = (top20Array[i][f].price * (value / 100)).toFixed(2);
+                }
+
+                if(type == "Fixed"){
+                  offer = (top20Array[i][f].price - value).toFixed(2);
+                }
+                price = `<p class="ps-product__price sale">$${offer} <del>$${top20Array[i][f].price}</del></p>`;
+              }else
+                price = `<p class="ps-product__price">$${top20Array[i][f].price}</p>`;
+
+              $(topSaleBlock[i]).append(
+                `
+                    <div class="ps-product--horizontal ">
+
+                    <div class="ps-product__thumbnail">
+                        <a href="product/${top20Array[i][f].url}">
+                            <img src="assets/img/products/${top20Array[i][f].category}/${top20Array[i][f].image}" alt="">
+                        </a>
+                    </div>
+
+                    <div class="ps-product__content">
+
+                        <a class="ps-product__title" href="product/${top20Array[i][f].url}">${top20Array[i][f].name}</a>                       
+                        ${price}
+                    </div>     
+                
+                </div>
+                `
+              );
+            }
+
+        }
+      }, 1000 * topSaleBlock.length);
+
+    }
+  }
 
 }

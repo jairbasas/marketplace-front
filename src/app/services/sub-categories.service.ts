@@ -15,4 +15,15 @@ export class SubCategoriesService {
     return this._http.get(`${this.api}sub-categories.json?orderBy="${orderBy}"&equalTo="${equalTo}"&print=pretty`);
   }
 
+  getLimitData(startAt:String, limitToFirst:Number){
+
+		return this._http.get(`${this.api}products.json?orderBy="$key"&startAt="${startAt}"&limitToFirst=${limitToFirst}&print=pretty`);
+
+	}
+
+	getFilterDataWithLimit(orderBy:String, equalTo:String, limitToFirst:Number){
+
+		return this._http.get(`${this.api}products.json?orderBy="${orderBy}"&equalTo="${equalTo}"&limitToFirst=${limitToFirst}&print=pretty`);
+
+	}
 }

@@ -182,7 +182,7 @@ export class AppComponent implements OnInit {
                 });
             }
         }
-
+        /*
         function owlCarouselConfig() {
             var target = $('.owl-slider');
             if (target.length > 0) {
@@ -251,7 +251,7 @@ export class AppComponent implements OnInit {
                 });
             }
         }
-
+        */
         function masonry($selector) {
             var masonry = $($selector);
             if (masonry.length > 0) {
