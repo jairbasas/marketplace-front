@@ -85,8 +85,9 @@ export class HomeHotTodayComponent implements OnInit {
 
               let block = 0;
               filterSales.forEach((sale, index) => {
-                block++;
+                
                 if(index < 20){
+                  block++;
                   this.productService.getFilterData("name", sale.product)
                       .subscribe( response => {
                         let i;
@@ -288,8 +289,9 @@ export class HomeHotTodayComponent implements OnInit {
                 `
               );
             }
-
         }
+        //$(".owl-dots").css({"botton":"0"});
+        $(".owl-dot").css({"background":"#ddd"});        
       }, 1000 * topSaleBlock.length);
 
     }

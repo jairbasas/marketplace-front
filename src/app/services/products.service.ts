@@ -23,4 +23,10 @@ export class ProductsService {
   getLimitData(startAt:String ,limitToFirst: number){
     return this._http.get(`${this.api}products.json?orderBy="$key"&startAt="${startAt}"&limitToFirst=${limitToFirst}&print=pretty`);
   }
+
+  getFilterDataWithLimit(orderBy:String, equalTo:String, limitToFirst:Number){
+
+		return this._http.get(`${this.api}products.json?orderBy="${orderBy}"&equalTo="${equalTo}"&limitToFirst=${limitToFirst}&print=pretty`);
+
+	}
 }

@@ -77,7 +77,7 @@
                         <ul class="menu--dropdown">
                             <li *ngFor ="let category of caregories; let i = index; let lastIndex = last" 
                                 class="menu-item-has-children has-mega-menu">
-                                <a routerLink="products/{{category.url}}"><i class="{{category.icon}}"></i> {{category.name}}</a>
+                                <a routerLink="products/{{category.url}}" target="_top"><i class="{{category.icon}}"></i> {{category.name}}</a>
                                 <div class="mega-menu">
                                     <div *ngFor="let title of arrayTitleList[i]" 
                                        class="mega-menu__column">
