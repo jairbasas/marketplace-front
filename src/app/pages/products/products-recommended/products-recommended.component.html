@@ -4,15 +4,15 @@ class="ps-block--shop-features">
 
     <div class="ps-block__header">
 
-        <h3>Best Sale Items</h3>
+        <h3>Recommended Items</h3>
 
         <div class="ps-block__navigation">
 
-            <a class="ps-carousel__prev" href="#recommended1">
+            <a class="ps-carousel__prev" href="#recommended">
                 <i class="icon-chevron-left"></i>
             </a>
 
-            <a class="ps-carousel__next" href="#recommended1">
+            <a class="ps-carousel__next" href="#recommended">
                 <i class="icon-chevron-right"></i>
             </a>
 
@@ -22,14 +22,10 @@ class="ps-block--shop-features">
 
     <div class="ps-block__content">
 
-        <div class="owl-slider" id="recommended1" data-owl-auto="true" data-owl-loop="true" data-owl-speed="10000" data-owl-gap="30" data-owl-nav="false" data-owl-dots="false" data-owl-item="6" data-owl-item-xs="2" data-owl-item-sm="2" data-owl-item-md="3" data-owl-item-lg="4" data-owl-item-xl="5" data-owl-duration="1000" data-owl-mousedrag="on">
-
-            <!--=====================================
-            Product
-            ======================================--> 
+        <div class="owl-slider" id="recommended" data-owl-auto="true" data-owl-loop="true" data-owl-speed="10000" data-owl-gap="30" data-owl-nav="false" data-owl-dots="false" data-owl-item="6" data-owl-item-xs="6" data-owl-item-sm="2" data-owl-item-md="3" data-owl-item-lg="4" data-owl-item-xl="5" data-owl-duration="1000" data-owl-mousedrag="on">
 
             <div 
-            *ngFor="let product of bestSalesItem; let lastIndex = last; let i = index"
+            *ngFor="let product of recommendedItems; let lastIndex = last; let i = index"
             class="ps-product">
 
                 <div class="ps-product__thumbnail">
@@ -101,14 +97,13 @@ class="ps-block--shop-features">
 
                 </div>
                 {{lastIndex ? callback(): ""}}
-            </div><!-- End Product -->
+            </div>
 
         </div>
 
     </div>
 
 </div>
-
 <div
 *ngIf="cargando"
 class="d-flex justify-content-center">

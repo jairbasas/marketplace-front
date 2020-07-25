@@ -17,7 +17,7 @@ export class ProductsBreadcrumbComponent implements OnInit {
 
   ngOnInit(): void {
 
-    let params = this.activateRoute.snapshot.params["param"];
+    let params = this.activateRoute.snapshot.params["param"].split('&')[0];
     this.categoriesService.getFilterData("url", params)
         .subscribe( response => {
           let i;

@@ -1,27 +1,24 @@
 import { Component, OnInit } from '@angular/core';
-
 import { OwlCarouselConfig, CarouselNavigation, SlickConfig, ProductLightbox, CountDown, Rating, ProgressBar } from "../../../function";
 import { Path } from "../../../config";
 import { ProductsService } from '../../../services/products.service';
 import { ActivatedRoute } from '@angular/router';
 
-declare var JQuery:any;
-declare var $:any;
-
 @Component({
-  selector: 'app-best-sales-item',
-  templateUrl: './best-sales-item.component.html',
-  styleUrls: ['./best-sales-item.component.css']
+  selector: 'app-products-recommended',
+  templateUrl: './products-recommended.component.html',
+  styleUrls: ['./products-recommended.component.css']
 })
-export class BestSalesItemComponent implements OnInit {
+export class ProductsRecommendedComponent implements OnInit {
 
   path:String = Path.url;
-  bestSalesItem: Array<any> = [];
+  recommendedItems: Array<any> = [];
   render:Boolean = true;
   rating:Array<any> = [];
   reviews:Array<any> = [];
   price:Array<any> = [];
   cargando:Boolean = false;
+
   constructor(private productService: ProductsService,
               private acivatedRouter: ActivatedRoute) { }
 
@@ -56,15 +53,15 @@ export class BestSalesItemComponent implements OnInit {
       getSales.push(response[i]);
     }
     getSales.sort(function(a, b){
-      return (b.sales - a.sales);
+      return (b.views - a.views);
     });
 
     getSales.forEach((product, index) => {
       if(index < 10){
-        this.bestSalesItem.push(product);
-        this.rating.push(this.dinamicRating(this.bestSalesItem[index]));
+        this.recommendedItems.push(product);
+        this.rating.push(this.dinamicRating(this.recommendedItems[index]));
         this.reviews.push(this.dinamicReviews(this.rating[index]));
-        this.price.push(this.dinamicPrice(this.bestSalesItem[index]));
+        this.price.push(this.dinamicPrice(this.recommendedItems[index]));
         this.cargando = false;
       }
     });
